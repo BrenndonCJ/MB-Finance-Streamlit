@@ -7,7 +7,7 @@ import plotly.express as px
 #SideBar
 opt_cripto = st.sidebar.selectbox(
     'Selecione uma criptomoeda',
-    ('MATIC-USD', 'ADA-USD', 'UNI-USD')
+    ('MATIC-USD', 'ADA-USD', 'UNI7083-USD')
 )
 opt_dias = st.sidebar.selectbox(
     'Selecione o intervalo de tempo',
