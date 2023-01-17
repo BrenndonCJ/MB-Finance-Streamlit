@@ -1,2 +1,2 @@
 # MB-Finance-Streamlit
- App para acompanhamente de valor de cripitomoedas
+* App para acompanhamento do valor de cripitomoedas
