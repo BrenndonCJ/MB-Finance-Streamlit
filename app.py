@@ -7,15 +7,12 @@ import plotly.express as px
 #SideBar
 opt_cripto = st.sidebar.selectbox(
     'Selecione uma criptomoeda',
-    ('MATIC-USD', 'ADA-USD')
+    ('MATIC-USD', 'ADA-USD', 'UNI-USD')
 )
 opt_dias = st.sidebar.selectbox(
     'Selecione o intervalo de tempo',
-    ('Agora','7 dias', '15 dias', '30 dias', '60 dias', '90 dias')
+    ('7 dias', '15 dias', '30 dias', '60 dias', '90 dias')
 )
-
-if opt_dias.lower() == 'agora':
-    opt_dias = '1 dias'
 
 dolar = yf.Ticker('USDBRL=X').history(period='1d').sort_values(by='Date', ascending=False)
 dolar = dolar['Close'][0]
@@ -27,7 +24,6 @@ cripto['High'] = cripto['High'].map(lambda x: x*dolar)
 cripto['Low'] = cripto['Low'].map(lambda x: x*dolar)
 cripto['Close'] = cripto['Close'].map(lambda x: x*dolar)
 cripto.index = cripto.index.strftime('%d/%m/%y')
-# cripto['Data'] = cripto.index.strftime('%d/%m/%y')
 
 # Criando graficos
 colunas = ['Open', 'High', 'Low', 'Close']
