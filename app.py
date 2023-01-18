@@ -8,16 +8,15 @@ from threading import Thread
 
 
 def send_message_telegram():
-    while True:
-        try:
-            criptomoeda = yf.Ticker('MATIC-USD').history(period='1d')
-            criptomoeda['Close'] = criptomoeda['Close'].map(lambda x: x*dolar)
-            last_value = criptomoeda['Close'][0]
-            message = f"Ultimo fechamento da MATIC: R$ {last_value:.2f}".replace('.',',')
-            send_message(message=message)
-            sleep(3.600)
-        except:
-            pass
+    try:
+        criptomoeda = yf.Ticker('MATIC-USD').history(period='1d')
+        criptomoeda['Close'] = criptomoeda['Close'].map(lambda x: x*dolar)
+        last_value = criptomoeda['Close'][0]
+        message = f"Ultimo fechamento da MATIC: R$ {last_value:.2f}".replace('.',',')
+        send_message(message=message)
+        sleep(10)
+    except:
+        pass
 
 # Elementos
 #SideBar
