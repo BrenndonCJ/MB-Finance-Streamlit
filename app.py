@@ -4,19 +4,7 @@ import plotly.express as px
 
 from bot_telegram import send_message
 from time import sleep
-from threading import Thread
 
-
-def send_message_telegram():
-    try:
-        criptomoeda = yf.Ticker('MATIC-USD').history(period='1d')
-        criptomoeda['Close'] = criptomoeda['Close'].map(lambda x: x*dolar)
-        last_value = criptomoeda['Close'][0]
-        message = f"Ultimo fechamento da MATIC: R$ {last_value:.2f}".replace('.',',')
-        send_message(message=message)
-        sleep(10)
-    except:
-        pass
 
 # Elementos
 #SideBar
@@ -61,3 +49,9 @@ st.subheader(opt_cripto)
 
 # Plotando graficos
 st.plotly_chart(fig1, use_container_width=True)
+
+# Enviando mensagens Telegram
+last_value = cripto['Close'][0]
+message = f"Ultimo fechamento da {opt_cripto}: R$ {last_value:.2f}".replace('.',',')
+send_message(message=message)
+sleep(3600)
