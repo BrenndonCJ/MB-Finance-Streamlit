@@ -49,9 +49,3 @@ st.subheader(opt_cripto)
 
 # Plotando graficos
 st.plotly_chart(fig1, use_container_width=True)
-
-# Enviando mensagens Telegram
-last_value = cripto['Close'][0]
-message = f"Ultimo fechamento da {opt_cripto}: R$ {last_value:.2f}".replace('.',',')
-send_message(message=message)
-sleep(3600)

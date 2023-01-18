@@ -1,6 +1,9 @@
 import requests
 
 
+TOKEN = '5942481613:AAE27ofhXgvfc0XpsTcsUU5o40djmTClcrY'
+ID = -801278776
+
 # enviar mensagens utilizando o bot para um chat específico
 def send_message(message):
     try:
