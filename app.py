@@ -2,6 +2,25 @@ import streamlit as st
 import yfinance as yf
 import plotly.express as px
 
+from bot_telegram import send_message
+from time import sleep
+from threading import Thread
+
+
+def send_message_telegram():
+    while True:
+        try:
+            matic = yf.Ticker(opt_cripto).history(period='1d')
+            matic['Close'] = matic['Close'].map(lambda x: x*dolar)
+            last_value = matic['Close'][0]
+            message = f"Ultimo fechamento da MATIC: R$ {last_value:.2f}".replace('.',',')
+            send_message(message=message)
+            sleep(10)
+        except:
+            pass
+
+thread_message = Thread(target=send_message_telegram)
+thread_message.start()
 
 # Elementos
 #SideBar
