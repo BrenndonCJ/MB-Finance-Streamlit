@@ -2,9 +2,6 @@ import streamlit as st
 import yfinance as yf
 import plotly.express as px
 
-from bot_telegram import send_message
-from time import sleep
-
 
 # Elementos
 #SideBar
