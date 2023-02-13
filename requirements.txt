@@ -38,17 +38,11 @@ idna==3.4
 imbalanced-learn==0.10.1
 imblearn==0.0
 importlib-metadata==5.1.0
-ipykernel==6.18.0
-ipython==8.6.0
-ipywidgets==8.0.2
 itsdangerous==2.1.2
 jedi==0.18.1
 Jinja2==3.1.2
 joblib==1.2.0
 jsonschema==4.17.1
-jupyter_client==7.4.7
-jupyter_core==5.0.0
-jupyterlab-widgets==1.1.1
 kiwisolver==1.4.4
 lxml==4.9.2
 MarkupSafe==2.1.1
