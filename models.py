@@ -40,8 +40,7 @@ def load_RNASR():
     sr = cv2.dnn_superres.DnnSuperResImpl_create()
     # dir = Path(__file__).resolve().parent
     # dir = os.path.join(dir, 'ESPCN_X4.pb')
-    # print(dir)
     sr.readModel('modelos/ESPCN_x4.pb')
-    # sr.setModel("espcn",4)
+    sr.setModel("espcn",4)
 
-    return 'ok'
+    return sr

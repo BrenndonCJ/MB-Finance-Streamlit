@@ -197,10 +197,6 @@ with guias_graficos[0]:
     else:
         st.write("Selecione alguma(s) moeda(s)")
 
-    if open('modelos/ESPCN_x4.pb'):
-        st.write("ok")
-
-
 # st.info('This is a purely info message', icon="ℹ️")
 # st.success('This is a purely sucess message', icon="ℹ️")
 # st.error('This is a purely error message', icon="ℹ️")
