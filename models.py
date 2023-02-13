@@ -3,7 +3,7 @@ import pandas as pd
 import cv2
 from pathlib import Path
 import os
-import streamlit as st
+# import streamlit as st
 
 
 def get_data(coin, coin_name='', interval='1d', period='1d'):
@@ -36,7 +36,7 @@ def trasnform_USDxBRL(df):
     return df
 
 
-@st.cache(persist=True,allow_output_mutation=True,show_spinner=False,suppress_st_warning=True)
+# @st.cache(persist=True,allow_output_mutation=True,show_spinner=False,suppress_st_warning=True)
 def load_RNASR():
 
     sr = cv2.dnn_superres.DnnSuperResImpl_create()
