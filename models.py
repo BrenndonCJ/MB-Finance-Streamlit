@@ -1,5 +1,6 @@
 import yfinance as yf
 import pandas as pd
+import cv2
 
 
 def get_data(coin, coin_name='', interval='1d', period='1d'):
@@ -30,3 +31,13 @@ def trasnform_USDxBRL(df):
     df['Low'] = df['Low'].map(lambda x: x*dolar)
     df['Close'] = df['Close'].map(lambda x: x*dolar)
     return df
+
+
+def load_RNASR():
+
+    sr = cv2.dnn_superres.DnnSuperResImpl_create()
+    dir = 'mb_app_finance/MB-Finance-Streamlit/ESPCN_x4.pb'
+    sr.readModel(dir)
+    sr.setModel("espcn",4)
+
+    return sr
