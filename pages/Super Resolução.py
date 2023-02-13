@@ -5,8 +5,6 @@ from pathlib import Path
 import os
 import numpy as np
 
-from models import load_RNASR
-
 
 def apply_super_resolution(img):
     img = Image.open(img)
@@ -15,13 +13,11 @@ def apply_super_resolution(img):
     dir = Path(__file__).resolve().parent
     dir = os.path.join(dir, 'ESPCN_X4.pb')
 
-    # sr = cv2.dnn_superres.DnnSuperResImpl_create()
-    # sr.readModel('ESPCN_X4.pb')
-    # sr.setModel("espcn",4)
-    # sr = load_RNASR()
-    # img = sr.upsample(img)
+    sr = cv2.dnn_superres.DnnSuperResImpl_create()
+    sr.readModel(dir)
+    sr.setModel("espcn",4)
 
-    st.write(dir)
+    img = sr.upsample(img)
 
     cv2.imwrite("temp.png", cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
     img = Image.fromarray(img, "RGB")
