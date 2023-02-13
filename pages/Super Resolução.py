@@ -28,7 +28,7 @@ def apply_super_resolution(img):
     return img
 
 
-st.title('Aplicar Super Reolução')
+st.title('Aplicar Super Resolução')
 
 img = st.file_uploader(label="Selecione uma foto")
 

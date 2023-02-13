@@ -4,6 +4,11 @@ import cv2
 from pathlib import Path
 import os
 
+import torch
+import numpy as np
+import streamlit as st
+import RRDBNet_arch as arch
+
 
 def get_data(coin, coin_name='', interval='1d', period='1d'):
     cripto = yf.Ticker(coin).history(interval=interval,period=period)
@@ -35,6 +40,7 @@ def trasnform_USDxBRL(df):
     return df
 
 
+@st.cache(persist=True,allow_output_mutation=True,show_spinner=False,suppress_st_warning=True)
 def load_RNASR():
 
     sr = cv2.dnn_superres.DnnSuperResImpl_create()
