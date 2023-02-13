@@ -41,7 +41,7 @@ def load_RNASR():
     dir = Path(__file__).resolve().parent
     dir = os.path.join(dir, 'ESPCN_X4.pb')
     print(dir)
-    sr.readModel(dir)
-    sr.setModel("espcn",4)
+    # sr.readModel(dir)
+    # sr.setModel("espcn",4)
 
-    return sr
+    return dir

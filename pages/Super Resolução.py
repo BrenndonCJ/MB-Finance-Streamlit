@@ -18,8 +18,10 @@ def apply_super_resolution(img):
     # sr = cv2.dnn_superres.DnnSuperResImpl_create()
     # sr.readModel('ESPCN_X4.pb')
     # sr.setModel("espcn",4)
-    sr = load_RNASR()
-    img = sr.upsample(img)
+    # sr = load_RNASR()
+    # img = sr.upsample(img)
+
+    st.write(dir)
 
     cv2.imwrite("temp.png", cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
     img = Image.fromarray(img, "RGB")
