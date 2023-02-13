@@ -1,6 +1,8 @@
 import yfinance as yf
 import pandas as pd
 import cv2
+from pathlib import Path
+import os
 
 
 def get_data(coin, coin_name='', interval='1d', period='1d'):
@@ -36,7 +38,9 @@ def trasnform_USDxBRL(df):
 def load_RNASR():
 
     sr = cv2.dnn_superres.DnnSuperResImpl_create()
-    dir = 'mb_app_finance/MB-Finance-Streamlit/ESPCN_x4.pb'
+    dir = Path(__file__).resolve().parent
+    dir = os.path.join(dir, 'ESPCN_X4.pb')
+    print(dir)
     sr.readModel(dir)
     sr.setModel("espcn",4)
 
