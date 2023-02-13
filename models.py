@@ -3,6 +3,7 @@ import pandas as pd
 import cv2
 from pathlib import Path
 import os
+import streamlit as st
 
 
 def get_data(coin, coin_name='', interval='1d', period='1d'):
