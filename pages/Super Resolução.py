@@ -9,7 +9,6 @@ from models import load_RNASR
 
 
 def apply_super_resolution(img):
-    img = Image.open(img)
     img = np.array(img.convert('RGB'))
 
     # dir = Path(__file__).resolve().parent
@@ -28,26 +27,37 @@ def apply_super_resolution(img):
     return img
 
 
+st.set_page_config(
+         page_icon="",
+         page_title="Super Resolução",
+         layout="wide",
+         initial_sidebar_state="expanded"
+)
+
 st.title('Aplicar Super Resolução')
 
-img = st.file_uploader(label="Selecione uma foto")
+img = st.file_uploader(label="Selecione uma foto", type=['jpg', 'png', 'gif'])
 
 j1, j2, j3 = st.columns([1,2,1])
 
 with j2:
     if img:
-        st.image(img)
+        img = Image.open(img)
+        if img.size[0] <= 1920 and img.size[1] <= 1080:
+            st.image(img, caption=img.size)
 
-        if st.button(label="Aplicar"):
-            with st.spinner('Wait for it...'):
-                new_img = apply_super_resolution(img)
+            if st.button(label="Aplicar"):
+                with st.spinner('Wait for it...'):
+                    new_img = apply_super_resolution(img)
 
-            imagem = open("temp.png", "rb")
+                imagem = open("temp.png", "rb")
 
-            st.image('temp.png')
+                st.image('temp.png', caption=new_img.size)
 
-            btn = st.download_button(
-            label="Download image",
-            data=imagem,
-            mime="image/png"
-            )
+                btn = st.download_button(
+                label="Download image",
+                data=imagem,
+                mime="image/png"
+                )
+        else:
+            st.error("Carregue uma imagem com domensões maximas de 1920x1080")

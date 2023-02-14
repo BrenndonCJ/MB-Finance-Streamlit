@@ -22,7 +22,7 @@ def get_data(coin, coin_name='', interval='1d', period='1d'):
 
 
 def get_dolar():
-    dolar = yf.Ticker('USDBRL=X').history(interval='30m',period='2h').sort_values(by='Datetime', ascending=True)
+    dolar = yf.Ticker('USDBRL=X').history(interval='30m',period='1d')#.sort_values(by='Datetime', ascending=True)
     return dolar['Close']
 
 
