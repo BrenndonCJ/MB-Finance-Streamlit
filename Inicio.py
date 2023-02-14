@@ -70,7 +70,7 @@ st.set_page_config(
 )
 
 #SideBar
-st.sidebar.title("Aplicativos")
+
 
 # Page MB Finance
 st.title('MB Finance')
