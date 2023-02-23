@@ -105,4 +105,5 @@ yfinance==0.2.3
 zipp==3.11.0
 opencv_contrib_python
 rembg
+xgboost
 streamlit
