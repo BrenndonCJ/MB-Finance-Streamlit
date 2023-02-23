@@ -3,6 +3,8 @@ import pandas as pd
 import cv2
 from pathlib import Path
 import os
+from pickle import load
+# from sklearn.preprocessing import MinMaxScaler
 # import streamlit as st
 
 
@@ -18,7 +20,8 @@ def get_data(coin, coin_name='', interval='1d', period='1d'):
     cripto['Date'] = cripto.index.strftime('%d/%m/%y')
     cripto['Hour'] = cripto.index.strftime('%H:%M')
 
-    return cripto.drop(columns=['Volume','Dividends','Stock Splits'])
+    # return cripto.drop(columns=['Volume','Dividends','Stock Splits'])
+    return cripto
 
 
 def get_dolar():
@@ -46,3 +49,12 @@ def load_RNASR():
     sr.setModel("espcn",4)
 
     return sr
+
+def estimative_value(features, coin):
+    normalize = load(open(f'modelos/{coin}_normalize.pkl','rb'))
+    model = load(open(f'modelos/{coin}_model.pkl','rb'))
+
+    features = normalize.transform(features)
+    pred = model.predict(features)
+    
+    return f'R${pred[0]:.2f}'

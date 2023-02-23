@@ -3,7 +3,7 @@ import yfinance as yf
 import plotly.express as px
 import pandas as pd
 
-from models import get_data, trasnform_USDxBRL, get_dolar
+from models import get_data, trasnform_USDxBRL, get_dolar, estimative_value
 
 
 def generate_graph(df, x, colunas, subtitle='Cripto'):
@@ -126,18 +126,36 @@ with guias_graficos[1]:
     else:
         fig1 = generate_graph(cripto, 'Date', colunas, subtitle=None)
 
+    try:
+        estimativa = st.columns([1,1,2,1])
+        with estimativa[0]:
+            st.subheader('Valor atual:')
+
+        with estimativa[1]:
+            if cripto['Close'][len(cripto)-1] >= cripto['Close'][len(cripto)-2]:
+                st.success(f" R$ {cripto['Close'][len(cripto)-1]:.2f}⬆️", icon="🪙")
+            else:
+                st.error(f"R$ {cripto['Close'][len(cripto)-1]:.2f}⬇️", icon="🪙")
+        
+        with estimativa[2]:
+            st.subheader('Estimativa de preço para o dia seguinte:')
+
+        with estimativa[3]:
+            features = cripto.tail(1)
+            features = features[['Open','High','Low','Close','Volume','Dividends','Stock Splits']]
+            valor = estimative_value(features, opt_cripto)
+            st.success(valor)
+    except:
+        with estimativa[3]:
+            st.info("Modelo para predição desta cripto será implementado em breve")
+
     j1, j2 = st.columns([4,1])
     
     with j1:
         st.subheader(opt_cripto)
         # Plotando graficos
         st.plotly_chart(fig1, use_container_width=True, config=dict(displayModeBar=False))
-
-    with j2:
-        if cripto['Close'][len(cripto)-1] >= cripto['Close'][len(cripto)-2]:
-            st.success(f" R$ {cripto['Close'][len(cripto)-1]:.2f}⬆️", icon="🪙")
-        else:
-            st.error(f"R$ {cripto['Close'][len(cripto)-1]:.2f}⬇️", icon="🪙")
+        
 ############################### GUIA 1 #####################################
 with guias_graficos[0]:
 
