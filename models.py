@@ -51,8 +51,8 @@ def load_RNASR():
     return sr
 
 def estimative_value(features, coin):
-    normalize = load(open(f'modelos/{coin}_normalize.pkl','rb'))
-    model = load(open(f'modelos/{coin}_model.pkl','rb'))
+    normalize = load(open(f'modelos/{coin}_normalize.pkl'.lower(),'rb'))
+    model = load(open(f'modelos/{coin}_model.pkl'.lower(),'rb'))
 
     features = normalize.transform(features)
     pred = model.predict(features)
