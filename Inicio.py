@@ -146,13 +146,8 @@ with guias_graficos[1]:
             valor = estimative_value(features, opt_cripto)
             st.success(valor)
     except:
-        # with estimativa[3]:
-        #     st.info("Modelo para predição desta cripto será implementado em breve")
         with estimativa[3]:
-            features = cripto.tail(1)
-            features = features[['Open','High','Low','Close','Volume','Dividends','Stock Splits']]
-            valor = estimative_value(features, opt_cripto)
-            st.success(valor)
+            st.info("Modelo para predição desta cripto será implementado em breve")
 
     j1, j2 = st.columns([4,1])
     

@@ -10,7 +10,7 @@ from models import load_RNASR
 
 
 def apply_super_resolution(img):
-    img = np.array(img.convert('RGBA'))
+    img = np.array(img.convert('RGB'))
 
     # dir = Path(__file__).resolve().parent
     # dir = os.path.join(dir, 'ESPCN_X4.pb')
@@ -22,7 +22,7 @@ def apply_super_resolution(img):
     sr = load_RNASR()
     img = sr.upsample(img)
     cv2.imwrite("temp.png", cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
-    img = Image.fromarray(img, "RGBA")
+    img = Image.fromarray(img, "RGB")
     return img
 
 
@@ -79,7 +79,7 @@ with paginas[0]:
                     mime="image/png"
                     )
             else:
-                st.error("Carregue uma imagem com domensões maximas de 1920x1080")
+                st.error("Carregue uma imagem com domensões maximas de 1920x1920")
 
 with paginas[1]:
     st.title('Remover Fundo / Background')
