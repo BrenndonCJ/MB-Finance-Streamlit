@@ -109,3 +109,5 @@ with paginas[1]:
             #         data=img,
             #         mime="image/png"
             #         )
+
+st.markdown("Todos os direitos reservados 💻 By: Mayk Brenndon (BrenndonCJ)")

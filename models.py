@@ -29,7 +29,7 @@ def get_dolar():
     return dolar['Close']
 
 
-def trasnform_USDxBRL(df):
+def transform_USDxBRL(df):
     dolar = get_dolar()
     dolar = dolar[len(dolar)-1]
     df['Open'] = df['Open'].map(lambda x: x*dolar)
@@ -58,3 +58,15 @@ def estimative_value(features, coin):
     pred = model.predict(features)
     
     return f'R${pred[0]:.2f}'
+
+
+def bandas_bollinger(df):
+    # Calcular media movel
+    media_movel = df[['Close']].rolling(window=20).mean()
+    desvio_padrao = df[['Close']].rolling(window=20).std()
+    banda_superior = media_movel + 2 * desvio_padrao
+    banda_superior = banda_superior.rename(columns={'Close':'Superior'})
+    banda_inferior = media_movel - 2 * desvio_padrao
+    banda_inferior = banda_inferior.rename(columns={'Close':'Inferior'})
+    df = df.join(banda_superior).join(banda_inferior)
+    return df.dropna()
